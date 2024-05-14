@@ -1,32 +1,30 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  grid-area: CT;
+export const Container = styled.div``;
 
-  display: flex;
-  flex-direction: column;
-
-  gap: 1.5rem;
-
-  height: calc(100vh - 160px);
-
+export const Wrapper = styled.div`
+  height: calc(100vh - 196px);
   overflow-y: auto;
+`;
+
+export const Content = styled.div`
+  padding: 0rem 2rem;
 `;
 
 export const Repositories = styled.div`
   display: flex;
   flex-direction: column;
-
+  
   gap: 1rem;
-
+  
   padding: 2rem;
-
+  
   background: #e6e6e6;
   background: #222;
-
+  
   border-radius: .7rem;
-
-  margin-bottom: 1rem;
+  
+  margin-bottom: 2rem;
 `;
 
 export const HeaderRepo = styled.div`
@@ -40,6 +38,8 @@ export const Title = styled.a`
   color: #478be6;
   font-weight: bold;
   font-size: 2rem;
+
+  text-decoration: none;
 
   cursor: pointer;
 
@@ -57,6 +57,7 @@ export const Tag = styled.div`
   border: 1px solid #717e8b;
   border-radius: 1rem;
   padding: .1rem .5rem;
+  text-transform: uppercase;
 
   &:hover {
     background: #333;
@@ -67,6 +68,9 @@ export const Tag = styled.div`
 export const Details = styled.span`
   color: #fff;
   font-size: 1.4rem;
+
+  max-height: 4rem;
+  overflow: hidden;
 `;
 
 export const Forks = styled.span`

@@ -52,7 +52,7 @@ export default function SearchUsers () {
             </S.UserImage>
             <S.CentralContent>
               <S.UserTitle>
-                <S.UserName>
+                <S.UserName href={userData.html_url} target="_blank">
                   {userData.name}
                 </S.UserName>
                 <S.LoginName>

@@ -11,6 +11,7 @@ export const Content = styled.div`
 
   display: flex;
   padding: 2rem;
+  margin: 0rem 2rem;
 
   gap: 1.5rem;
 `;
@@ -39,10 +40,18 @@ export const UserTitle = styled.div`
   gap: .8rem;
 `;
 
-export const UserName = styled.h2`
+export const UserName = styled.a`
   color: #478be6;
   font-weight: bold;
   font-size: 2rem;
+
+  text-decoration: none;
+
+  transition: all .2s ease-in-out;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export const LoginName = styled.h4`
