@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  /* background: red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 export const Content = styled.div`
   background: #222;

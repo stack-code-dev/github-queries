@@ -3,6 +3,7 @@ import { api } from "../../services/api";
 import { requestHeaders } from "../../services/requestHeaders";
 import MessageNotFound from "../../Components/MessageNotFound";
 import Search from "../../Components/Search";
+import Loading from "../../Components/Loading";
 
 import * as S from "./styles";
 
@@ -43,50 +44,50 @@ export default function SearchUsers () {
         handleFetch={handleGetUsers}
       />
 
-      {isLoading ? <h2>Carregando</h2> :
-          userData !== null ?
-            <S.Content>
-              <S.UserImage>
-                <img src={userData.avatar_url} alt="user-image" />
-              </S.UserImage>
-              <S.CentralContent>
-                <S.UserTitle>
-                  <S.UserName>
-                    {userData.name}
-                  </S.UserName>
-                  <S.LoginName>
-                    {userData.login}
-                  </S.LoginName>
-                </S.UserTitle>
+      {isLoading ? <Loading /> :
+        userData !== null ?
+          <S.Content>
+            <S.UserImage>
+              <img src={userData.avatar_url} alt="user-image" />
+            </S.UserImage>
+            <S.CentralContent>
+              <S.UserTitle>
+                <S.UserName>
+                  {userData.name}
+                </S.UserName>
+                <S.LoginName>
+                  {userData.login}
+                </S.LoginName>
+              </S.UserTitle>
 
-                <S.Details>
-                  {userData.bio}
-                </S.Details>
+              <S.Details>
+                {userData.bio}
+              </S.Details>
 
-                <S.Footer>
-                  <S.City>
-                    {userData.location}
-                  </S.City>
+              <S.Footer>
+                <S.City>
+                  {userData.location}
+                </S.City>
 
-                  <S.RepositoriesNumber>
-                    <i className="pi pi-book"></i>
-                    {userData.public_repos}
-                  </S.RepositoriesNumber>
+                <S.RepositoriesNumber>
+                  <i className="pi pi-book"></i>
+                  {userData.public_repos}
+                </S.RepositoriesNumber>
 
-                  <S.Follows>
-                    <i className="pi pi-users" style={{ fontSize: '1.3rem' }}></i>
-                    {userData.followers}
-                  </S.Follows>
-                </S.Footer>
-              </S.CentralContent>
+                <S.Follows>
+                  <i className="pi pi-users" style={{ fontSize: '1.3rem' }}></i>
+                  {userData.followers}
+                </S.Follows>
+              </S.Footer>
+            </S.CentralContent>
 
-              <S.RightSide>
-                <S.Repositories>
-                  Repositorios
-                </S.Repositories>
-              </S.RightSide>
-            </S.Content>
-            : searchNotFound ? <MessageNotFound /> : ''
+            <S.RightSide>
+              <S.Repositories>
+                Repositorios
+              </S.Repositories>
+            </S.RightSide>
+          </S.Content>
+          : searchNotFound ? <MessageNotFound /> : ''
       }
     </S.Container>
   )
