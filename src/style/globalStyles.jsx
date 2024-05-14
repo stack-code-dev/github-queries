@@ -1,4 +1,6 @@
 import { createGlobalStyle } from "styled-components";
+import 'primeicons/primeicons.css';
+import "primereact/resources/themes/lara-light-cyan/theme.css";
 
 export default createGlobalStyle`
   * {
