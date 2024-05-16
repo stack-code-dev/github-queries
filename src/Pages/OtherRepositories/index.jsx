@@ -10,7 +10,12 @@ import { ptBR } from 'date-fns/locale/pt-BR'
 import * as S from "./styles";
 
 export default function MyRepositories() {
-  const [ repositoriesList, setRepositoriesList ] = useState([]);
+  const [ repositoriesList, setRepositoriesList ] = useState(() => {
+    const sessionRepositories = 
+      JSON.parse(sessionStorage.getItem('@github-queries:repositories')) ?? [];
+
+    return sessionRepositories
+  });
   const [ isLoading, setLoading ] = useState(false);
   const [ searchNotFound, setSearchNotFound ] = useState(false);
   const [ repo, setRepo ] = useState('')
@@ -27,14 +32,16 @@ export default function MyRepositories() {
     try{
       const response = await api.get(`/search/repositories?q=${repo}`, requestHeaders())
 
-      const data = response.data;
+      const data = response.data.items;
 
       if(response.status !== 200) {
         throw new Error(`Erro na pesquisa: ${response.status}`)
       }
 
-      setRepositoriesList(data.items)
-      setSearchNotFound(true)
+      setRepositoriesList(data)
+      sessionStorage.setItem('@github-queries:repositories', JSON.stringify(data))
+
+      data.length == 0 && setSearchNotFound(true)
       
     } catch (error) {
       console.error('Erro ao carregar os dados:', error)
@@ -51,6 +58,7 @@ export default function MyRepositories() {
         searchTerm={repo}
         setSearchTerm={setRepo}
         handleFetch={handleGetUsers}
+        placeholder={'Pesquisa por repositórios'}
       />
       
       {isLoading ? (
@@ -100,7 +108,7 @@ export default function MyRepositories() {
               </S.Content>
             ))
           ) : (
-            searchNotFound && <MessageNotFound />
+            searchNotFound && <MessageNotFound message={'Repositório'} />
           )}
         </S.Wrapper>
       )}

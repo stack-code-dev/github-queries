@@ -8,7 +8,11 @@ import Loading from "../../Components/Loading";
 import * as S from "./styles";
 
 export default function SearchUsers () {
-  const [ userData, setUserData ] = useState(null);
+  const [ userData, setUserData ] = useState(() => {
+    const sessionUser = JSON.parse(sessionStorage.getItem('@github-queries:user')) ?? {};
+    
+    return sessionUser
+  });
   const [ isLoading, setLoading ] = useState(false);
   const [ searchNotFound, setSearchNotFound ] = useState(false);
   const [ user, setUser ] = useState('')
@@ -25,12 +29,12 @@ export default function SearchUsers () {
       }
 
       setUserData(data)
-      setSearchNotFound(true)
+      sessionStorage.setItem('@github-queries:user', JSON.stringify(data))
       
     } catch (error) {
       console.error('Erro ao carregar os dados:', error)
       setSearchNotFound(true)
-      setUserData(null)
+      setUserData([])
     } finally {
       setLoading(false);
     }
@@ -42,10 +46,11 @@ export default function SearchUsers () {
         searchTerm={user}
         setSearchTerm={setUser}
         handleFetch={handleGetUsers}
+        placeholder={'Pesquisa por usuário'}
       />
 
       {isLoading ? <Loading /> :
-        userData !== null ?
+        (Object.keys(userData).length > 0 ?
           <S.Content>
             <S.UserImage>
               <img src={userData.avatar_url} alt="user-image" />
@@ -87,7 +92,8 @@ export default function SearchUsers () {
               </S.Repositories>
             </S.RightSide>
           </S.Content>
-          : searchNotFound ? <MessageNotFound /> : ''
+          : searchNotFound && <MessageNotFound message={'Usuário'} />
+        )
       }
     </S.Container>
   )

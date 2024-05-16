@@ -4,18 +4,16 @@ const AuthContext = createContext()
 
 export default function AuthProvider({ children }){
   const [logged, setLogged] = useState(() => {
-    const local = localStorage.getItem('@github-queries:user')
+    const loggedSession = JSON.parse(sessionStorage.getItem('@github-queries:logged')) ?? false
 
-    if(local) {
-      return local
-    } else {
-      return false
-    }
+    return loggedSession
   })
 
-  const signIn = () => {
-    localStorage.setItem('@github-queries:user', true)
-    setLogged(true)
+  const signIn = (email, password) => {
+    if(email === 'user@gmail.com' && password === '123') {
+      sessionStorage.setItem('@github-queries:logged', true);
+      setLogged(true);
+    }
   }
 
   return (

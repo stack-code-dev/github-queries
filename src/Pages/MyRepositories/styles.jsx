@@ -1,16 +1,14 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  grid-area: CT;
+export const Container = styled.div``;
 
-  display: flex;
-  flex-direction: column;
-
-  gap: 1.5rem;
-
-  height: calc(100vh - 160px);
-
+export const Wrapper = styled.div`
+  height: calc(100vh - 196px);
   overflow-y: auto;
+`;
+
+export const Content = styled.div`
+  padding: 0rem 2rem;
 `;
 
 export const Repositories = styled.div`

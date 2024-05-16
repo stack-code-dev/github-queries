@@ -2,16 +2,24 @@ import logoImg from '../../images/github-img.png'
 import Input from "../../Components/Input";
 import Button from '../../Components/Button';
 import { useAuth } from '../../hooks/auth';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import * as S from "./styles";
 
 export default function Signin () {
+  const [ email, setEmail ] = useState('');
+  const [ password, setPassword ] = useState('');
   const { logged, signIn } = useAuth()
 
   useEffect(() => {
     console.log(logged, 'PAGE: SIGNIN')
   },[logged])
+
+  const handleLogin = (e) => {
+    e.preventDefault()
+
+    signIn(email, password)
+  }
 
   return(
     <S.Container>
@@ -19,14 +27,27 @@ export default function Signin () {
         <img src={logoImg} alt="logo-img" />
       </S.Header>
 
-      <S.Form onClick={() => signIn()}>
+      <S.Form onSubmit={(e) => handleLogin(e)}>
         <S.FormTitle>Sign In</S.FormTitle>
 
-        <Input placeholder={'E-mail'} type={'email'} focus={true} required />
+        <Input 
+          placeholder={'E-mail'}
+          type={'email'}
+          focus={true}
+          onChange={(e) => setEmail(e.target.value)} 
+          required 
+        />
 
-        <Input placeholder={'Password'} type={'password'} required />
+        <Input 
+          placeholder={'Password'} 
+          type={'password'} 
+          onChange={(e) => setPassword(e.target.value)} 
+          required 
+        />
 
-        <Button type={'submit'}>Signin</Button>
+        <Button type={'submit'}>
+          Signin
+        </Button>
       </S.Form>
     </S.Container>
   )

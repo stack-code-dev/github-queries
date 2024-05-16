@@ -3,26 +3,49 @@ import { InputText } from "primereact/inputtext";
 
 import * as S from "./styles";
 
-export default function Search({ searchTerm, setSearchTerm, handleFetch }) {
+export default function Search({ 
+  searchTerm, 
+  data,
+  setRepositoriesFiltered,
+  setSearchTerm, 
+  handleFetch, 
+  placeholder 
+}) {
   const handleInput = (e) => {
-    setSearchTerm(e ? e : '')
+    setSearchTerm(e.target.value ? e.target.value : '')
   }
-
+  
   const handleEnter = (e) => {
     if(e.keyCode === 13 && searchTerm.length > 0) {
       handleFinder()
     }
   }
+  
+  const handleFilterRepositories = (e) => {
+    if(!setRepositoriesFiltered) return
+    
+    const value = e.target.value;
+    const searchTermLower = value.toLowerCase();
+
+    const dataFiltered = data.filter(item => {
+      const itemNameLower = item.name.toLowerCase()
+      
+      return itemNameLower.includes(searchTermLower)
+    })
+
+    setRepositoriesFiltered(dataFiltered)
+  }
+
 
   const handleFinder = () => {
-    handleFetch()
+    handleFetch && handleFetch();
   }
 
   return(
     <S.SearchGroup>
       <InputText 
-        placeholder="Pesquise seu repositório" 
-        onChange={e => handleInput(e.target.value)} 
+        placeholder={placeholder} 
+        onChange={e => {handleInput(e), handleFilterRepositories(e)}} 
         onKeyDown={(e) => handleEnter(e)}
       />
       <Button 
