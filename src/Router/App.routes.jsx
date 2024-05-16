@@ -17,11 +17,7 @@ export default function AppRoutes() {
         </PrivateRoutes>
       }/>
 
-      <Route element={
-        <PrivateRoutes>
-          <Layout />
-        </PrivateRoutes>
-      }>
+      <Route element={<Layout />}>
         <Route path="/my-repositories" element={<MyRepositories />} />
         <Route path="/others-repositories" element={<OtherRepositories />} />
         <Route path="/search-user" element={<SearchUsers />} />

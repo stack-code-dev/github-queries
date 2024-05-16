@@ -1,19 +1,15 @@
+import { useState } from 'react';
 import logoImg from '../../images/github-img.png'
 import Input from "../../Components/Input";
 import Button from '../../Components/Button';
 import { useAuth } from '../../hooks/auth';
-import { useEffect, useState } from 'react';
 
 import * as S from "./styles";
 
 export default function Signin () {
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
-  const { logged, signIn } = useAuth()
-
-  useEffect(() => {
-    console.log(logged, 'PAGE: SIGNIN')
-  },[logged])
+  const { signIn } = useAuth()
 
   const handleLogin = (e) => {
     e.preventDefault()
