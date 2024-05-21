@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
 import logoImg from '../../images/github-img.svg'
+import { useAuth } from "../../hooks/auth";
+import { Button } from "primereact/button";
 
 import * as S from "./styles";
 
 export default function Aside() {
+  const { signOut } = useAuth()
+
   return (
     <S.Container>
       <S.Header>
@@ -34,8 +38,10 @@ export default function Aside() {
       </S.MenuContent>
 
       <S.Footer>
-        <i className="pi pi-sign-out" style={{ fontSize: '1.3rem' }}></i>
-        sair
+        <Button onClick={() => signOut()}>
+          <i className="pi pi-sign-out" style={{ fontSize: '1.3rem' }}></i>
+          sair
+        </Button>
       </S.Footer>
     </S.Container>
   )

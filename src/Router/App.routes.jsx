@@ -10,18 +10,17 @@ export default function AppRoutes() {
   return(
     <Routes>
       <Route path="*" element={<PrivateRoutes /> }/>
-
-      <Route path="/login" element={
-        <PrivateRoutes>
-          <Signin />
-        </PrivateRoutes>
-      }/>
+        <Route path="/login" element={
+          <PrivateRoutes>
+            <Signin />
+          </PrivateRoutes>
+        }/>
 
       <Route element={<Layout />}>
         <Route path="/my-repositories" element={<MyRepositories />} />
         <Route path="/others-repositories" element={<OtherRepositories />} />
         <Route path="/search-user" element={<SearchUsers />} />
-      </Route>
+      </Route> 
     </Routes>
   )
 }

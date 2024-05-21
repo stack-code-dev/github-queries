@@ -39,9 +39,11 @@ export const Title = styled.a`
   font-weight: bold;
   font-size: 2rem;
 
+  text-decoration: none;
+
   cursor: pointer;
 
-  transition: all .2s ease-in-out;  
+  transition: all .2s ease-in-out; 
 
   &:hover {
     text-decoration: underline;

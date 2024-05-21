@@ -1,8 +1,8 @@
 import { ButtonComponents } from "./styles";
 
-export default function Button({ type, children }) {
+export default function Button({ type, children, onClick }) {
   return(
-    <ButtonComponents type={type}>
+    <ButtonComponents type={type} onClick={onClick}>
       {children}
     </ButtonComponents>
   )

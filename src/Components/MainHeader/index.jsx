@@ -1,10 +1,12 @@
 import { useLocation } from "react-router-dom";
 import { useMemo } from "react";
+import { useAuth } from "../../hooks/auth";
 
 import * as S from "./styles";
 
 export default function MainHeader() {
   const { pathname } = useLocation();
+  const { user } = useAuth();
 
   const pageName = useMemo(() => {
     const typeStatus = {
@@ -20,9 +22,9 @@ export default function MainHeader() {
     <S.Container>
       <S.RigthSide>
         <S.UserName>
-          Ivo Junior
+          {user.userName}
         </S.UserName>
-        <img src={'https://avatars.githubusercontent.com/u/60287007?v=4'} alt="avatar" />
+        <img src={user.userImg} alt="profileImage" />
       </S.RigthSide>
       
       <S.Title>

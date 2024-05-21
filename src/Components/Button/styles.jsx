@@ -11,6 +11,8 @@ export const ButtonComponents = styled.button`
 
   margin-top: .5rem;
 
+  cursor: pointer;
+
   &:focus {
     border: 1px solid red
   }

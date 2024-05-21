@@ -4,8 +4,7 @@ import { requestHeaders } from "../../services/requestHeaders";
 import { api } from "../../services/api";
 import Loading from "../../Components/Loading";
 import MessageNotFound from "../../Components/MessageNotFound";
-import { format } from "date-fns";
-import { ptBR } from 'date-fns/locale/pt-BR'
+import { handleformatDate } from "../../utils/formateDate";
 
 import * as S from "./styles";
 
@@ -19,13 +18,6 @@ export default function MyRepositories() {
   const [ isLoading, setLoading ] = useState(false);
   const [ searchNotFound, setSearchNotFound ] = useState(false);
   const [ repo, setRepo ] = useState('')
-
-  const handleformatDate = (date) => {
-    const parseDate = new Date(date)
-    const formattedDate = format(parseDate, "d 'de' MMMM 'de' yyyy", { locale: ptBR })
-
-    return `Atualizado em ${formattedDate}`
-  }
 
   const handleGetUsers = async () => {
     setLoading(true)

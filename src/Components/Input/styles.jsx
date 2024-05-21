@@ -7,5 +7,7 @@ export const InputComponent = styled.input`
   padding: 0.5rem 1rem;
 
   border-radius: .5rem;
-  border: .5px solid #5b5b5b;
+  border: 2px solid #5b5b5b;
+
+
 `;

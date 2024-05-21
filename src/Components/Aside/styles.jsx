@@ -66,13 +66,21 @@ export const Footer = styled.footer`
   
   color: #fff;
   font-size: 1.6rem;
-  transition: all .2s ease-in-out;
   text-transform: uppercase;
+  transition: all .2s ease-in-out;
   
   cursor: pointer;
 
   i {
     margin-right: .7rem;
+  }
+
+  button {
+    color: #fff;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    
+    background: none;
   }
   
   &:hover {

@@ -2,31 +2,25 @@ import { useEffect, useState } from "react";
 import Search from "../../Components/Search";
 import { requestHeaders } from "../../services/requestHeaders";
 import { api } from "../../services/api";
-import { format } from "date-fns";
-import { ptBR } from 'date-fns/locale/pt-BR'
 import MessageNotFound from "../../Components/MessageNotFound";
 import Loading from "../../Components/Loading";
+import { handleformatDate } from "../../utils/formateDate";
 
 import * as S from "./styles";
+import { useAuth } from "../../hooks/auth";
 
 export default function MyRepositories() {
   const [ repositoriesData, setRepositoriesData ] = useState([])
   const [ repositoriesFiltered, setRepositoriesFiltered ] = useState([])
   const [ isLoading, setLoading ] = useState(false);
   const [ searchNotFound, setSearchNotFound ] = useState(false);
-  const [ user, setUser ] = useState('Ivo-Jr');
+  const { user, setUser } = useAuth();
 
-  const handleformatDate = (date) => {
-    const parseDate = new Date(date)
-    const formattedDate = format(parseDate, "d 'de' MMMM 'de' yyyy", { locale: ptBR })
-
-    return `Atualizado em ${formattedDate}`
-  }
 
   const handleGetUsers = async () => {
     setLoading(true)
     try{
-      const response = await api.get(`/users/${user}/repos`, requestHeaders())
+      const response = await api.get(`/users/${user.githubName}/repos`, requestHeaders())
 
       const data = response.data;
 
@@ -112,9 +106,6 @@ export default function MyRepositories() {
         </S.Wrapper>
       )
     }
-
-     
-      
     </S.Container>
   )
 }

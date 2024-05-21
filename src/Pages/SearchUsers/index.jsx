@@ -9,7 +9,7 @@ import * as S from "./styles";
 
 export default function SearchUsers () {
   const [ userData, setUserData ] = useState(() => {
-    const sessionUser = JSON.parse(sessionStorage.getItem('@github-queries:user')) ?? {};
+    const sessionUser = JSON.parse(sessionStorage.getItem('@github-queries:findUser')) ?? {};
     
     return sessionUser
   });
@@ -29,7 +29,7 @@ export default function SearchUsers () {
       }
 
       setUserData(data)
-      sessionStorage.setItem('@github-queries:user', JSON.stringify(data))
+      sessionStorage.setItem('@github-queries:findUser', JSON.stringify(data))
       
     } catch (error) {
       console.error('Erro ao carregar os dados:', error)
