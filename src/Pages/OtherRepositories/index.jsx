@@ -8,7 +8,7 @@ import { handleformatDate } from "../../utils/formateDate";
 
 import * as S from "./styles";
 
-export default function MyRepositories() {
+export default function OtherRepositories() {
   const [ repositoriesList, setRepositoriesList ] = useState(() => {
     const sessionRepositories = 
       JSON.parse(sessionStorage.getItem('@github-queries:repositories')) ?? [];
